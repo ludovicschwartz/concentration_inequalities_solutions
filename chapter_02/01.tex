@@ -1,6 +1,18 @@
 %! TEX root = ./main.tex
 \begin{exercise}{}
+	Let $ \textbf{M}Z $ be a median of the square integrable variable $ Z $(i.e $ \PP{Z\geq \textbf{M}Z} \geq \frac{1}{2} $ and $ \PP{Z\leq \textbf{M}Z} \geq \frac{1}{2}$ ). Show that 
+\begin{equation*}
+	|\EE{Z} - \textbf{M}Z| \leq \sqrt{Var(Z)}
+\end{equation*}
 \end{exercise}
 
 \begin{solution}
+	We have the following inequalities :
+\begin{align*}
+	|\EE{Z} - \textbf{M}Z| &= |\EE{Z - \textbf{M}Z}| \\
+			       &\leq \EE{|Z - \textbf{M}Z|} \\
+			       &\leq \EE{|Z - \EE{Z}|} \\
+			       &\leq \sqrt{\EE{(Z- \EE{Z})^{2}}}
+\end{align*}
+Where the second inequality comes from the optimality of the median for the mean absolute error($ \textbf{M}Z \in \argmin_{c\in\R} \EE{|Z-c|} $) and the third inequality is Cauchy-Schwarz.
 \end{solution}
