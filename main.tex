@@ -1,0 +1,59 @@
+\documentclass[a4paper, 11pt]{report}
+
+\usepackage{preamble}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+\usepackage{subcaption}
+\usepackage{multicol}
+	\setlength{\columnseprule}{0.1pt}
+
+\usepackage{setspace}
+
+\usepackage{pgffor}
+\usepackage{subfiles}
+
+\input{macros}
+
+\newcounter{exercise}[chapter]
+\newenvironment{exercise}[1]{\refstepcounter{exercise}\vspace{0.5cm}{\bfseries Exercise \theexercise. #1\\ }\addcontentsline{toc}{section}{Exercise \theexercise. #1} }{\par\vspace{0.4cm}}
+\newenvironment{solution}{\vspace{0.5cm}{\bfseries Solution \theexercise. \\}}{\hfill $\blacksquare$ \par\vspace{0.4cm}}
+
+\newcommand\TwoDigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+\newcommand*{\MaxNumOfChapters}{40}
+\providecommand{\main}{.}
+\title{
+\begin{Huge}
+concentration inequalities solutions -- Exercise Solutions
+\end{Huge}
+}
+\author{Ludovic Schwartz}
+\date{}
+
+\setlength{\parskip}{.3em}
+
+\begin{document}
+
+\maketitle
+\clearpage
+
+\begin{small}
+\tableofcontents
+\end{small}
+
+\foreach \c in {1,2,...,\MaxNumOfChapters}{%
+    \edef\FileName{chapter_\TwoDigits{\c}/ch_\TwoDigits{\c}}
+    \IfFileExists{\FileName} {%
+        \subfile{\FileName}%
+    }{%
+         % files does not exist, so nothing to do
+    }%
+}%
+
+\clearpage
+\nocite{*}
+\bibliography{ref}
+
+\end{document}
