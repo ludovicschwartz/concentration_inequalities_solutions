@@ -1,6 +1,36 @@
 %! TEX root = ./main.tex
 \begin{exercise}{}
+	Let $ X $ be a random variable with median $ \textbf{M}X $, such that there exist positive constants a and b such that for all $ t\geq 0 $,
+\begin{equation*}
+	\PP{|X - \textbf{M}X| >t} \leq a \exp{-\frac{t^2}{b}}
+\end{equation*}
+Show that $ |\textbf{M}X - \EE{X}| \leq \min \left( \sqrt{ab},a \sqrt{b \pi}/2 \right) $
+
 \end{exercise}
 
 \begin{solution}
+We have the following :
+\begin{align*}
+	|\EE{X} - \textbf{M}X| &= |\EE{X - \textbf{M}X}| \\
+			       &\leq \EE{|X - \textbf{M}X|} \\
+			       &= \int_0^\infty \PP{|X-\textbf{M}X| >t}dt \\
+			       &\leq \int_0^\infty a\exp{-\frac{t^2}{b}}\\
+			       &\leq a\cdot \sqrt{b \pi}/2 
+\end{align*}
+For the second inequality, we will bound the variance and use the first exercise. We know that
+\begin{equation*}
+	Var(X) = \EE{(X-\EE{X})^2} = \min_{c\in \R}\EE{(X-c)^2}
+\end{equation*}
+In particular, plugging in the value of the median as $ c $, we get :
+\begin{align*}
+	Var(X) &\leq \EE{(X- \textbf{M}X)^2} \\
+	       &= \int_0^\infty \PP{(X- \textbf{M}X)^2 > t}dt \\
+	       &= \int_0^\infty \PP{|X - \textbf{M}X| > \sqrt{t}}dt \\
+	       &\leq \int_0^\infty a\cdot \exp{-\frac{t}{b}}dt\\
+	       &\leq ab
+\end{align*}
+Then using the result of the first exercise we have :
+\begin{equation*}
+	|\EE{X}-\textbf{M}X| \leq \sqrt{Var(X)} \leq \sqrt{ab}
+\end{equation*}
 \end{solution}
