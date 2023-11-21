@@ -139,3 +139,12 @@
 
 % White square with gamma :
 \newcommand{\whitesquaregamma}{\text{\ooalign{$\square$\cr\hidewidth\raisebox{0.1ex}{\scalebox{1.2}{$\gamma$}}\hidewidth}}}
+
+% Leftstackrel
+\newlength{\leftstackrelawd}
+\newlength{\leftstackrelbwd}
+\def\leftstackrel#1#2{\settowidth{\leftstackrelawd}%
+{${{}^{#1}}$}\settowidth{\leftstackrelbwd}{$#2$}%
+\addtolength{\leftstackrelawd}{-\leftstackrelbwd}%
+\leavevmode\ifthenelse{\lengthtest{\leftstackrelawd>0pt}}%
+{\kern-.5\leftstackrelawd}{}\mathrel{\mathop{#2}\limits^{#1}}}

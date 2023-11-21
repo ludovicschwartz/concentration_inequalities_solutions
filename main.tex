@@ -13,8 +13,8 @@
 \input{macros}
 
 \newcounter{exercise}[chapter]
-\newenvironment{exercise}[1]{\refstepcounter{exercise}\vspace{0.5cm}{\bfseries Exercise \theexercise. #1\\ }\addcontentsline{toc}{section}{Exercise \theexercise. #1} }{\par\vspace{0.4cm}}
-\newenvironment{solution}{\vspace{0.5cm}{\bfseries Solution \theexercise. \\}}{\hfill $\whitesquaregamma$ \par\vspace{0.4cm}}
+\newenvironment{exercise}[1]{\noindent\refstepcounter{exercise}\vspace{0.5cm}{\textbf{Exercise \thechapter.\theexercise} \textsc{#1}\\}\addcontentsline{toc}{section}{Exercise \theexercise. #1} }{\par\vspace{0.4cm}}
+\newenvironment{solution}{\noindent{\bfseries Solution :}}{\hfill $\whitesquaregamma$ \par\vspace{0.4cm}}
 
 \newcommand\TwoDigits[1]{%
    \ifnum#1<10 0#1\else #1\fi
