@@ -1,6 +1,21 @@
 %! TEX root = ./main.tex
-\begin{exercise}[TODO]{}
+\begin{exercise}{(Moments VS. Chernoff Bounds)}
+Show that moment bounds for tail probabilities are always better than Cramér-Chernoff bounds. More precisely, let Y be a nonnegative random variable and let $ t>0 $. The best moment bound for the tail probability $ \PP{Y\geq t} $ is $ \min_q \EE{Y^q}t^{-q}$ where the minimum is taken over all positive integers. The best Cramér-Chernoff bound is $ \inf_{\lambda>0}\EE{\exp{\lambda(Y-t)}} $. Prove that :
+\begin{equation*}
+	 \min_q \EE{Y^q}t^{-q} \leq  \inf_{\lambda>0}\EE{\exp{\lambda(Y-t)}} 
+\end{equation*}
+
 \end{exercise}
 
 \begin{solution}
+	We denote $ m:=\min_q \EE{Y^q}t^{-q} $. In particular, we have that for any integer $ q $, $ \EE{Y^q}\geq m\cdot t^{q} $. We will now fix a $ \lambda >0 $. We have :
+\begin{align*}
+	\EE{\exp{\lambda(Y-t)}} &= e^{-\lambda t}\EE{\sum_{q=0}^{\infty}\frac{(\lambda Y)^q}{q!}} \\
+				&\leftstackrel{\mathrm{{(Fubini-Tonelli)}}}{=} e^{-\lambda t} \sum_{q=0}^{\infty}\frac{(\lambda^{q} \EE{Y}^{q})}{q!} \\
+				&\geq  e^{-\lambda t} \sum_{q=0}^{\infty}\frac{(\lambda^{q}\cdot  m\cdot t^{q})}{q!} \\
+				&= m\cdot e^{-\lambda t} \sum_{q=0}^{\infty}\frac{(\lambda^{q}   t^{q})}{q!} \\
+				&=m\cdot e^{-\lambda t}\cdot e^{\lambda t}\\
+				&=m
+\end{align*}
+
 \end{solution}
