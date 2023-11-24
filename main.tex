@@ -1,7 +1,7 @@
 \documentclass[a4paper, 11pt]{report}
 
 \usepackage{preamble}
-
+\usepackage{ifthen}
 \usepackage{multicol}
 	\setlength{\columnseprule}{0.1pt}
 
@@ -9,11 +9,11 @@
 
 \usepackage{pgffor}
 \usepackage{subfiles}
-
+\setlength {\marginparwidth }{2cm}
 \input{macros}
 
 \newcounter{exercise}[chapter]
-\newenvironment{exercise}[1]{\noindent\refstepcounter{exercise}\vspace{0.5cm}{\textbf{Exercise \thechapter.\theexercise} \textsc{#1}\\}\addcontentsline{toc}{section}{Exercise \theexercise. #1} }{\par\vspace{0.4cm}}
+\newenvironment{exercise}[2][]{\noindent\refstepcounter{exercise}\vspace{0.5cm}{\textbf{Exercise \thechapter.\theexercise} \textsc{#2}\\}\ifthenelse{\equal{#1}{}}{\addcontentsline{toc}{section}{Exercise \theexercise. #2}}{} }{\par\vspace{0.4cm}}
 \newenvironment{solution}{\noindent{\bfseries Solution :}}{\hfill $\whitesquaregamma$ \par\vspace{0.4cm}}
 
 \newcommand\TwoDigits[1]{%
