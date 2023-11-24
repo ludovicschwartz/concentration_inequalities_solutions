@@ -1,6 +1,37 @@
 %! TEX root = ./main.tex
-\begin{exercise}{}
+\begin{exercise}{(Chebyshev-Cantelli Inequality)}
+Prove the following one-sided improvement of Chebyshev's inequality : for any real-valued random variable Y and $ t>0 $,
+\begin{equation*}
+	\PP{Y-\EE{Y} \geq t} \leq \frac{Var(Y)}{Var(Y) + t^2}
+\end{equation*}
+
 \end{exercise}
 
 \begin{solution}
+	We start by defining $ Z := Y - \EE{Y} $ and $ v := \EE{Z^2} = Var(Y) $
+We are now trying to prove $ \PP{Z \geq t} \leq \frac{v}{v + t^2} $
+We have for any $ u\geq 0 $
+\begin{align*}
+	\PP{Z \geq t} &= \PP{Z + u \geq t + u}\\
+		      &\leq \PP{(Z+u)^2\geq (t+u)^2} \\
+		      &\leftstackrel{\mathrm{(Markov)}}{\leq } \frac{\EE{(Z+u)^2}}{(t+u)^2} \\
+		      &\leq \frac{v+u^2}{(t+u)^2}
+\end{align*}
+We're now going to optimize the value of this fraction over u. Let
+\begin{align*}
+\varphi : \R^{+}& \longrightarrow \R \\
+u &\longmapsto \frac{v+u^{2}}{(t+u)^{2}}
+\end{align*}
+We compute it's derivative :
+\begin{align*}
+	\varphi\prime(u) &= \frac{2u\cdot (t+u)^{2} - (v+u^2)\cdot 2(t+u)}{(t+u)^4} \\
+			 &= \frac{(t+u)\cdot (2ut -2v)}{(t+u)^4}
+\end{align*}
+In particular, $ \varphi $ reaches its minimum in $ u^{*}:= \frac{v}{t} $. We plug that value in the previous inequality :
+\begin{align*}
+	\PP{Z \geq t} \leq \varphi(u^{*}) &= \frac{v+ \frac{v}{t}^2}{(t+\frac{v}{t})^2} \\
+					  &= \frac{v\cdot (t^2+v)}{(t^2+v)^2} \\
+					  &= \frac{v}{v+t^2}
+\end{align*}
+
 \end{solution}
