@@ -1,6 +1,43 @@
 %! TEX root = ./main.tex
-\begin{exercise}[TODO]{}
+\begin{exercise}[]{}
+	Let Z be a real-valued random variable. Show that the set of positive numbers $ S=\{ \lambda >0 : \EE{e^{\lambda Z}}<\infty \} $ is either empty or an interval with left end point equal to 0. Let $ b = \sup S $. Show that $ \varphi_Z(\lambda)=\log\EE{e^{\lambda Z}} $ is convex and infinitely many times differentiable on $ I=(0,b) $ with $ \varphi^\prime_{Z}(0) = \varphi_Z(0) = 0 $ and the Cramér transform of Z equals $ \varphi_Z^{*} = \sup_{\lambda \in I}(\lambda t - \varphi_Z(\lambda)) $
 \end{exercise}
 
 \begin{solution}
+	We start with the first claim, we are going to prove that:
+
+\begin{equation*}
+	\text{For any }  0 <  \lambda < \mu ,\quad\mu \in S \implies \lambda \in S
+\end{equation*}
+This will prove  that S is either empty or an interval with left end point equal to 0. Let $ 0<\lambda<\mu $ with $ \mu \in S $. We have :
+\begin{align*}
+	\EE{e^{\lambda Z}} &= \EE{e^{\lambda Z}\mathbb{I}_{Z \leq 0} + e^{\lambda Z}\mathbb{I}_{Z > 0}}\\
+			   &= \EE{1\cdot \mathbb{I}_{Z \leq 0}} + \EE{e^{\mu Z}}\\
+			   &< \infty
+\end{align*}
+
+Now for the differentiability, let $0<\alpha<\beta<b,\, \lambda \in (\alpha,\beta) \quad \text{and} \quad k\in \mathbb{N} $. We have :
+\begin{equation*}
+	\frac{d^{k}}{d \lambda}e^{\lambda Z} = Z^{k} e^{\lambda Z}
+\end{equation*}
+To prove the differentiability of $ \varphi $ on $ (\alpha,\beta) $, it is enough to provide a domination of $ \frac{d^{k}}{d \lambda}$ on $ (\alpha, \beta) $. We have : 
+\begin{align*}
+	|Z^{k}e^{\lambda Z}| &\leq |Z|^ke^{\lambda Z} \mathbb{I}_{Z \leq 0} + |Z|^ke^{\lambda Z} \mathbb{I}_{Z > 0} \\
+			     &\leq |Z|^ke^{\alpha Z}\mathbb{I}_{Z \leq 0} + (|Z|^k\cdot e^{-\frac{b-\beta}{2}Z})(e^{\frac{b+\beta}{2}Z})\mathbb{I}_{Z>0}
+\end{align*}
+The left term is integrable because it is bounded and the right term is integrable as the product of a bounded function and an integrable function. Now since $ \EE{e^{\lambda Z}>0} $ on S, we have proven that $ \varphi $ is infinitely differentiable on I.
+
+To prove convexity, we use the previous result and compute the 2nd order derivative of $ \varphi $. For any $ \lambda \in I $ :
+\begin{align*}
+	\varphi^\prime(\lambda) &= \frac{\EE{Ze^{\lambda Z}}}{\EE{e^{\lambda Z}}}\\
+	\varphi^{\prime\prime} &= \frac{\EE{Z^{2}e^{\lambda Z}}\cdot \EE{e^{\lambda Z}}-\EE{Ze^{\lambda Z}}^2}{\EE{e^{\lambda Z}}^2} \leftstackrel{\mathrm{{(C.S)}}}{\geq } 0 
+\end{align*}
+Where the second inequality comes from Cauchy-Schwarz Inequality. This proves the convexity of $ \varphi $.
+
+To finish the exercise, it remains to study the case in which the expectation of $ Z $ is 0. To prove that $ \varphi $ is continuously differentiable on $ [0,b) $, we simply need to verify that its derivative has a right limit in 0. It is clear that $ Ze^{\lambda Z} \underset{\lambda \rightarrow 0}{\rightarrow} Z  $. Then :
+\begin{align*}
+	\EE{Ze^{\lambda Z}} &= \EE{Ze^{\lambda Z}\mathbb{I}_{Z \leq 0}} + \EE{Ze^{\lambda Z}\mathbb{I}_{Z >0}} \\
+			    &\underset{\lambda \rightarrow 0}{\rightarrow} \EE{Z \mathbb{I}_{Z \leq 0}} + \EE{Z \mathbb{I}_{Z>0}} = \EE{Z} = 0
+\end{align*}
+Where the left expectation converges because of dominated convergence and the right one because of monotonic convergence. We have proven continous differntiability of $ \varphi $ on $ [0,b) $ and that $ \varphi(0) = \varphi^{\prime}(0) = 0 $.
 \end{solution}
