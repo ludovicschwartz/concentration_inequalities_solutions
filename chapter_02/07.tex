@@ -1,6 +1,26 @@
 %! TEX root = ./main.tex
-\begin{exercise}[TODO]{}
+\begin{exercise}[]{}
+	Prove that if $ Z $ is a centered normal random variable with variance $ \sigma^2 $, then
+\begin{equation*}
+	\sup_{t>0}\left( \PP{Z \geq t}\exp{\frac{t^2}{2\sigma^2}} \right) = \frac{1}{2}
+\end{equation*}
 \end{exercise}
 
-\begin{solution}[TODO]
+\begin{solution}[]
+	Without loss of generality, we assume that $ \sigma = 1 $. Let $ t>0 $, we have
+\begin{align*}
+	\PP{Z \geq t} &= \int_{t}^{+\infty} \frac{1}{\sqrt{2 \pi}}\exp{-\frac{u^2}{2}}\,du \\
+		      &= \int_{0}^{+\infty} \frac{1}{\sqrt{2 \pi}}\exp{-\frac{(u+t)^2}{2}}du \\
+		      &= \exp{-\frac{t^2}{2}}\cdot \int_{0}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp{(-ut)}\exp{(-\frac{u^2}{2})}du \\
+	\PP{Z \geq t}\cdot \exp{\left( \frac{t^2}{2} \right)} &=  \int_{0}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp{(-ut)}\exp{(-\frac{u^2}{2})}du \\
+\end{align*}
+Then we notice that $ \exp(-ut) \underset{t\rightarrow\infty}{\rightarrow} 1 $ pointwise. More importantly it converges in an increasing manner and since everything inside the integral is nonnegative, we can use the monotone convergence theorem to conclude that :
+\begin{align*}
+	\sup_{t>0}\PP{Z\geq t}\cdot \exp{\left( \frac{t^2}{2} \right)} &=\sup_{t>0} \int_{0}^{+\infty}\frac{1}{\sqrt{2 \pi}} \exp{(-ut)}\exp{(-\frac{u^2}{2})}  du\\
+								       &= \lim_{t\rightarrow \infty}\int_{0}^{+\infty}\frac{1}{\sqrt{2 \pi}} \exp{(-ut)}\exp{(-\frac{u^2}{2})}du\\
+								       &= \int_{0}^{+\infty} \lim_{t \rightarrow \infty} \frac{1}{\sqrt{2 \pi}} \exp{(-ut)} \exp{(-\frac{u^2}{2})}du\\
+								       &= \int_{0}^{+\infty} \frac{1}{\sqrt{2 \pi}}\exp{-\frac{u^2}{2}}du = \frac{1}{2}
+\end{align*}
+
+
 \end{solution}
