@@ -13,9 +13,9 @@
 \input{macros}
 
 \newcounter{exercise}[chapter]
-\newenvironment{exercise}[2][]{\ifthenelse{\equal{#1}{}}{\noindent\refstepcounter{exercise}\vspace{0.5cm}{\textbf{Exercise \thechapter.\theexercise} \textsc{#2}\\}\addcontentsline{toc}{section}{Exercise \theexercise. #2}}{} }{}
+\newenvironment{exercise}[2][]{\refstepcounter{exercise}\ifthenelse{\equal{#1}{}}{\noindent\vspace{0.5cm}{\textbf{Exercise \thechapter.\theexercise} \textsc{#2}\\}\addcontentsline{toc}{section}{Exercise \theexercise. #2}}{} }{}
 \providecommand{\soldone}{}
-\newenvironment{solution}[1][]{\renewcommand{\soldone}{\equal{#1}{}}\ifthenelse{\soldone}{\par\vspace{0.4cm}\noindent{\bfseries Solution :}}{}}{\ifthenelse{\soldone}{\hfill $\whitesquaregamma$ \par\vspace{0.4cm}}{}}
+\newenvironment{solution}[1][]{\renewcommand{\soldone}{\equal{#1}{}}\ifthenelse{\soldone}{\par\vspace{0.4cm}\noindent{\bfseries Solution : }}{}}{\ifthenelse{\soldone}{\hfill $\whitesquaregamma$ \par\vspace{0.4cm}}{}}
 
 \newcommand\TwoDigits[1]{%
    \ifnum#1<10 0#1\else #1\fi
