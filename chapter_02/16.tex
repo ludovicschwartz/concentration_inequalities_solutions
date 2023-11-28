@@ -1,6 +1,19 @@
 %! TEX root = ./main.tex
-\begin{exercise}[TODO]{}
+\begin{exercise}[]{}
+	Prove that if $ X $ is a sub-Gaussian random variable with variance factor $ v $ then $ Var(X) \leq v $.
 \end{exercise}
 
-\begin{solution}[TODO]
+\begin{solution}[]
+	We define $ \phi(\lambda) := \log \EE{e^{\lambda X}} $ the log moment generating function of X. The subgaussian condition can be written as
+\begin{equation*}
+	\forall \lambda \in \mathbb{R},\, \phi(\lambda) \leq \frac{\lambda^2v}{2}
+\end{equation*}
+We also have that $ \phi(0) = \phi^{\prime}(0) $ and $ \phi^{\prime\prime}(0) = Var(X) $ we can now use a Taylor expansion around 0 to get the following result :
+\begin{align*}
+	0 &\leq \frac{\lambda^2v}{2} - \phi(\lambda) \\
+	  &=\frac{\lambda^2}{2}\cdot (v-Var(X)) + o(\lambda^2) \\
+	  &\sim \frac{\lambda^2v}{2}\cdot (v-Var(X))
+\end{align*}
+This is only possible if $ Var(X) \leq v $
+
 \end{solution}
