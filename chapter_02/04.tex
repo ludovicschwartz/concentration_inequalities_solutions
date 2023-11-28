@@ -1,6 +1,21 @@
 %! TEX root = ./main.tex
-\begin{exercise}{}
+\begin{exercise}{(Paley-Zigmund Inequality)}
+	Show that if $ Y $ is a nonnegative random variable, then for any $ a \in (0,1) $,
+\begin{equation*}
+	\PP{Y- \EE{Y}} \geq (1-a)^2 \frac{(\EE{Y})^2}{\EE{Y^2}}
+\end{equation*}
+
 \end{exercise}
 
 \begin{solution}
+	We have :
+\begin{align*}
+	\EE{Y} &= \EE{Y \mathbb{I}_{Y<a\EE{Y}}} + \EE{Y \mathbb{I}_{Y \geq a\EE{Y}}} \\
+	       &\leq \EE{a\EE{Y} \mathbb{I}_{Y<a\EE{Y}}} + \sqrt{\EE{Y^2}\cdot \EE{\mathbb{I}_{Y\geq a \EE{Y}}^2}} \\
+	       &\leq a\EE{Y} + \sqrt{\EE{Y^2}\cdot \EE{\mathbb{I}_{Y\geq a \EE{Y}}}} \\
+	(1-a)\EE{Y} &\leq \sqrt{\EE{Y^2}\cdot \PP{Y\geq a \EE{Y}}} \\
+\end{align*}
+Where the first inequality comes from Cauchy Schwarz on the right term.
+Taking the square and rearranging, we get the claimed result.
+
 \end{solution}

@@ -1,6 +1,26 @@
 %! TEX root = ./main.tex
-\begin{exercise}[TODO]{}
+\begin{exercise}[]{(Sub-Gaussian lower tail for nonnegative random variables)}
+	Let $ X $ be a nonnegative random variable with finite second moment. Show that for any $ \lambda >0 $, $ \EE{e^{-\lambda(X-\EE{X})}} \leq e^{\lambda^2\EE{X^2}/2} $. In particular, if $ X_1,\ldots,X_n $ are independent nonnegative random variables, then for any t>0,
+\begin{equation*}
+	\PP{S \leq -t} \leq \exp{\left( \frac{-t^2}{v} \right)}
+\end{equation*}
+where $ S = \sum_{i=1}^{n}(X_i-\EE{X_i}) $ and $ v =\sum_{i=1}^{n}\EE{X_i^2} $
+
 \end{exercise}
 
-\begin{solution}[TODO]
+\begin{solution}[]
+	We have the following elementary inequalities :
+\begin{align*}
+	\forall x\geq 0,\, \exp{-x} &\leq 1 -x +\frac{x^2}{2} \\
+	\forall x \in \mathbb{R},\, 1+x &\leq \exp{x}
+\end{align*}
+Using this we get :
+\begin{align*}
+	\EE{e^{-\lambda(X-\EE{X})}} &= e^{\lambda \EE{X}}\cdot\EE{e^{-\lambda X}} \\
+				    &\leq e^{\lambda \EE{X}} \cdot  \EE{1-\lambda X + \frac{\lambda^2 X^2}{2}}\\
+				    &\leq e^{\lambda \EE{X}} \cdot \left( 1 + \left(-\lambda \EE{X} + \frac{\lambda^2}{2}\EE{X^2}\right) \right)\\
+				    &\leq e^{\lambda \EE{X}} \cdot e^{-\lambda X + \frac{\lambda^2}{2}\EE{X^2}} \\
+				    &= e^{\lambda^2\EE{X^2}/2}
+\end{align*}
+
 \end{solution}
