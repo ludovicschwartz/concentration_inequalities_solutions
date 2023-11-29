@@ -1,6 +1,19 @@
 %! TEX root = ./main.tex
-\begin{exercise}[TODO]{}
+\begin{exercise}[]{}
+	Assume that the random variables $ X_1,\ldots,X_n $ are independent and binary \{-1,1\}-valued with $ \PP{X_i =1}=p_i $ and that $ f : \{-1,1\}^n \rightarrow \mathbb{R}$ has the bounded differences property with constants $ c_1,\ldots,c_n $. Show that if $ Z=f(X_1,\ldots,X_n) $,
+\begin{equation*}
+	Var(Z) \leq \sum_{i=1}^{n}c_i^2p_i(1-p_i)
+\end{equation*}
+
 \end{exercise}
 
-\begin{solution}[TODO]
+\begin{solution}[]
+	We use Efron Stein's Inequality. Let $ X_1^{\prime},\ldots,X_n^{\prime}  $ be a independent copy of $ X_1,\ldots,X_n$ and $ Z_i = f(X_1,\ldots,X_{i-1},X^{\prime}_i,X_{i+1},\ldots,X_n) $. We also define $Z_i^{(\pm)} = f(X_1,\ldots,X_{i-1},\pm 1,X_{i+1},\ldots,X_n) $. We have that : 
+\begin{align*}
+	Var(Z) &\leq \frac{1}{2}\sum_{i=1}^{n}\EE{(Z-Z_i)^2} \\
+	       &\leq  \frac{1}{2}\sum_{i=1}^{n}\EE{\mathbb{E}^{(i)}[(Z-Z_i)^2]}\\
+	       &\leq \frac{1}{2}\sum_{i=1}^{n}\EE{p_i^2\cdot (Z_i^{(+)}-Z_i^{(+)})^2 + 2p_i(1-p_i)\cdot (Z_i^{(+)}-Z_i^{(-)})^2 + (1-p_i)^2\cdot (Z_i^{(-)}-Z_i^{(-)})^2}\\
+	       &\leq \frac{1}{2}\sum_{i=1}^{n}\EE{2p_i(1-p_i)c_i^2}\\
+	       &\leq \sum_{i=1}^{n}p_i(1-p_i)c_i^2 
+\end{align*}
 \end{solution}
